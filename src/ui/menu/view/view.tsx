@@ -1,7 +1,7 @@
 import * as React from "react";
 import { getRenderTree } from "./logic";
 import { SubrouteMap } from "../../../logic";
-import { RouterContainerProps } from "./types";
+import { RouterContainerProps, RouterItemProps } from "./types";
 
 interface RouteProps {
     location: string;
@@ -12,7 +12,7 @@ interface Props {
     /**Mapa de las rutas a dibujar */
     routes: SubrouteMap;
     /**Componente que va a dibujar los elementos del menu */
-    children: React.ComponentType<RouterContainerProps>;
+    children: React.ComponentType<RouterItemProps>;
 };
 
 
@@ -23,6 +23,6 @@ export class RouteMenu extends React.PureComponent<Props> {
         const props = this.props;
         const items = getRenderTree(props.routes, 0);
         const Comp = props.children;
-        return <Comp depth={0} subroutes={items} />;
+        return items.map(x => <Comp {...x} />);
     }
 }
