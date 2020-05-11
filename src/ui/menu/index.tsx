@@ -1,0 +1,1 @@
+export { RouteMenu } from "./view";

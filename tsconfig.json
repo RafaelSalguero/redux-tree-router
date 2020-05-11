@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+        "module": "ES6",
+        "moduleResolution": "node",
+        "target": "es6",
+        "jsx": "react",
+        "noImplicitAny": false,
+        "inlineSourceMap": true,
+        "strict": true,
+        "lib": [
+            "es6",
+            "dom",
+            "dom.iterable"
+        ],
+        "outDir": "dist/esm",
+        "rootDir": "src",
+    },
+    "exclude": ["dist"]
+}

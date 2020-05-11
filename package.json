@@ -1,0 +1,31 @@
+{
+  "name": "react-tree-router",
+  "version": "1.0.0",
+  "description": "Arbol de rutas con `react-first-router`",
+  "main": "dist/commonjs/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/types/index.d.ts",
+  "scripts": {
+    "buildCommonJs": "tsc -m commonjs -outDir dist/commonjs -d false",
+    "buildES6": "tsc -d -declarationDir dist/types",
+    "build": "npm run buildES6 && npm run buildCommonJs",
+    "prepublishOnly": "npm run build",
+    "tsc": "tsc --noemit"
+  },
+  "author": "Rafael Salguero Iturrios",
+  "license": "MIT",
+  "dependencies": {
+    "async-reselect": "^1.0.0",
+    "react": "^16.13.1",
+    "react-redux": "^7.2.0",
+    "react-rxk": "^7.0.0",
+    "redux": "^4.0.5",
+    "redux-first-router-link": "^2.1.1",
+    "simple-pure-utils": "^2.0.4"
+  },
+  "devDependencies": {
+    "@types/react": "^16.9.35",
+    "@types/react-redux": "^7.1.8",
+    "typescript": "^3.8.3"
+  }
+}
