@@ -3,6 +3,9 @@ import { last } from "simple-pure-utils";
 import { GotoRelativeFunc } from "./location";
 import { RxfyScalar } from "react-rxk";
 
+import {  } from "redux-first-router-link";
+
+
 /**Símbolo de la propiedad que se usa para configurar una ruta */
 export const conf = Symbol("routeConfig");
 /**Propiedad para las parte calculada de la configuración de la ruta*/
