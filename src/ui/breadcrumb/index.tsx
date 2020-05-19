@@ -44,24 +44,31 @@ export function Breadcrumbs<T extends RouteItem>(props: ViewProps<T>) {
     const parts = props.home ? [props.base, ...partsTail] : partsTail;
 
     return (
-        parts.map((x, i) => {
-            const name = getLocation(x);
-            const conf = getConf(x);
-            const esHome = x == props.base;
-            const esLeaf = i == (parts.length - 1);
-            const gotoRel: GotoRelativeFunc = (up, relativeNamePath, params) => gotoRelative(currItem, { up, relativeNamePath }, params);
-            const label: RxfyScalar<React.ReactNode> = typeof (conf.label) == "function" ? conf.label(params as any, gotoRel) : conf.label;
-
-            return <Rx
-                render={props.render}
-                props={{
-                    label: label,
-                    home: esHome,
-                    active: esLeaf,
-                    name: name,
-                    params: esLeaf ? params : undefined
-                }}
-            />
-        })
+        <>
+            {
+                parts.map((x, i) => {
+                    const name = getLocation(x);
+                    const conf = getConf(x);
+                    const esHome = x == props.base;
+                    const esLeaf = i == (parts.length - 1);
+                    const gotoRel: GotoRelativeFunc = (up, relativeNamePath, params) => gotoRelative(currItem, { up, relativeNamePath }, params);
+                    const label: RxfyScalar<React.ReactNode> = typeof (conf.label) == "function" ? conf.label(params as any, gotoRel) : conf.label;
+                    const to = {
+                            type: name,
+                            payload: params
+                    }
+                    return <Rx
+                        key={to.type}
+                        render={props.render}
+                        props={{
+                            label: label,
+                            home: esHome,
+                            active: esLeaf,
+                            to: to
+                        }}
+                    />
+                })
+            }
+        </>
     );
 }
