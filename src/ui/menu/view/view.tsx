@@ -19,31 +19,28 @@ interface Props {
 
 /**Dibuja un mapa de rutas con un componente específico para dibujar cada uno de los elementos
 */
-export class RouteMenu extends React.PureComponent<Props> {
-    render() {
-        const props = this.props;
-        const items = getRenderTree(props.routes, 0);
-        const Comp = props.children;
+export function RouteMenu(props: Props) {
+    const items = getRenderTree(props.routes, 0);
+    const Comp = props.children;
 
-        const currentLocation: string = useSelector((state: any) => state.location.type);
-      
+    const currentLocation: string = useSelector((state: any) => state.location.type);
 
-        return items.map(x => {
-            const location = x.key;
-            const currentActive = location == currentLocation;
-            
-            const childActive = findRouteByLocation(x.route, currentLocation) != null;
-    
-            const activeStrict = currentActive;
-            const active = activeStrict || childActive;
 
-            return (
-                <Comp
-                    {...x}
-                    activeStrict={activeStrict}
-                    active={active}
-                />
-            );
-        });
-    }
+    return items.map(x => {
+        const location = x.key;
+        const currentActive = location == currentLocation;
+
+        const childActive = findRouteByLocation(x.route, currentLocation) != null;
+
+        const activeStrict = currentActive;
+        const active = activeStrict || childActive;
+
+        return (
+            <Comp
+                {...x}
+                activeStrict={activeStrict}
+                active={active}
+            />
+        );
+    });
 }
