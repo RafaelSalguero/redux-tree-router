@@ -1,8 +1,7 @@
 import * as React from "react";
 import { getRenderTree } from "./logic";
 import { SubrouteMap, findRouteByLocation } from "../../../logic";
-import { RenderTreeContainer, RenderTreeItem, RouteItemProps } from "./types";
-import { useSelector } from "react-redux";
+import { RouteItemProps } from "./types";
 
 interface RouteProps {
     location: string;

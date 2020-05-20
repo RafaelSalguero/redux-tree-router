@@ -1,4 +1,4 @@
-import { RenderTreeItem } from "./types";
+import { RouteItemProps } from "./types";
 import { SubrouteMap, listSubs, getLocation, findRouteByLocation } from "../../../logic";
 import { hasParams, getName, getConf } from "../../../logic/types";
 
@@ -6,7 +6,7 @@ import { hasParams, getName, getConf } from "../../../logic/types";
  * un conjunto de subrutas
  * @param depth Profundidad de @see subrouteMap, si esta es la raíz, debe de ser 0
  */
-export function getRenderTree(subrouteMap: SubrouteMap, depth: number = 0): RenderTreeItem[] {
+export function getRenderTree(subrouteMap: SubrouteMap, depth: number = 0): RouteItemProps[] {
     //Sólo mostramos las rutas sin parámetros
     const subs =
         listSubs(subrouteMap)
@@ -14,7 +14,7 @@ export function getRenderTree(subrouteMap: SubrouteMap, depth: number = 0): Rend
 
 
 
-    return subs.map<RenderTreeItem>(x => {
+    return subs.map<RouteItemProps>(x => {
         const location = getLocation(x);
         
         const name = getName(x);
