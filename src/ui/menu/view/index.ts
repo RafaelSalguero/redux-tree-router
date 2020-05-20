@@ -1,2 +1,3 @@
 export * from "./view";
-export * from "./types";
+export {  RouteItemProps} from "./types";
+export * from "./hooks";

@@ -12,6 +12,11 @@ export function getLocation(route: ReadyRoute): string {
     return namePathToLocation(getNamePath(route));
 }
 
+/**True si @param location es hijo de @param baseLocation */
+export function isLocationSubrouteOf(baseLocation:string, location:string) {
+    return location.startsWith(baseLocation + "/");
+}
+
 /**Instrucción para viajar a una ruta relativa*/
 export interface RelativePath {
     /**Cantidad de niveles para viajar hacia arríba

@@ -1,1 +1,1 @@
-export { RouteMenu, RouteItemProps } from "./view";
+export * from "./view";

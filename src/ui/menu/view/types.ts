@@ -7,11 +7,11 @@ export interface RenderTreeContainer {
     depth: number;
 
     /**Sub rutas hijas a dibujar*/
-    subroutes: RenderTreeItem[];
+    subroutes: RouteItemProps[];
 }
 
 /**Props que se le pasan a un componente que dibuja un elemento del menu de ruta */
-export interface RenderTreeItem extends RenderTreeContainer {
+export interface RouteItemProps extends RenderTreeContainer {
     /**Nombre único de la ruta */
     key: string;
     /**Acción de ruteo que se debe de ejecutar cuando se de click al botón */
@@ -24,10 +24,4 @@ export interface RenderTreeItem extends RenderTreeContainer {
     text?: string;
     route: ReadyRoute;
 }
-
-export interface RouteItemProps extends RenderTreeItem {
-    /**Si la ruta actual es esta o un hijo */
-    active: boolean;
-    /**Si la ruta actual es esta */
-    activeStrict: boolean;
-}
+ 
