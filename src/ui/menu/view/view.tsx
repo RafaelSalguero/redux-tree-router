@@ -24,11 +24,9 @@ export function RouteMenu(props: Props) {
     const items = getRenderTree(props.routes, 0);
     const Comp = props.children;
 
-    return items.map(x => {
-        return (
-            <Comp
-                {...x}
-            />
-        );
-    });
+    return (
+        <>
+            {items.map(x => <Comp {...x} />)}
+        </>
+    );
 }
