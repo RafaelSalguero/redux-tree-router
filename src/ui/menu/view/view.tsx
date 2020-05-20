@@ -1,7 +1,7 @@
 import * as React from "react";
 import { getRenderTree } from "./logic";
 import { SubrouteMap, findRouteByLocation } from "../../../logic";
-import { RouterContainerProps, RouterItemProps, RouteItemPropsActive } from "./types";
+import { RenderTreeContainer, RenderTreeItem, RouteItemProps } from "./types";
 import { useSelector } from "react-redux";
 
 interface RouteProps {
@@ -13,7 +13,7 @@ interface Props {
     /**Mapa de las rutas a dibujar */
     routes: SubrouteMap;
     /**Componente que va a dibujar los elementos del menu */
-    children: React.ComponentType<RouteItemPropsActive>;
+    children: React.ComponentType<RouteItemProps>;
 };
 
 
