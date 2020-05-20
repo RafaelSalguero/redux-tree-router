@@ -52,7 +52,7 @@ test("route test", () => {
                     [readyConf]: {
                         hasParams: true,
                         namePath: ["solicitud", "edit"],
-                        path: "/solicitud/edit/"
+                        path: "/solicitud/edit/:id"
                     }
                 },
             },
@@ -70,13 +70,7 @@ test("route test", () => {
         }
     }
 
-    const e = <RouterView
-        base={routes.solicitud}
-        map={{
-            edit: (route: RouteProps<{id: number}>) => <div>{route.params.id}</div>,
-            list: () => <div>hola</div>
-        }}
-    />;
+ 
 
     expect(routes).toEqual(expected);
     console.log(routes);
