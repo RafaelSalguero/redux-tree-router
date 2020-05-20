@@ -23,7 +23,7 @@ interface Props<T extends ReadyRoute> {
     /**Mapa de las rutas a dibujar */
     base: T;
     /**Por cada ruta hija o subhija del arbol de rutas de 'base', el componente a dibujar en esa parte de la ruta.
-     * Al componente se le pasará el prop 'route' de tipo @see RouteProps
+     * Al componente se le pasarán unos props de tipo @see RouteComponentProps
      */
     map: RouteComponentMap<OmitConfSymbol<T>>;
     /**Componente a dibujar cuando la ruta actual no encaje con ningun elemento de @see base */

@@ -26,7 +26,7 @@ route({
 <RouterView
     base={routes.solicitud}
     map={{
-        edit: (route: RouteProps<{id: number}>) => <div>{route.params.id}</div>,
+        edit: (route: RouteComponentProps<{id: number}>) => <div>{route.params.id}</div>,
         list: () => <div>hola</div>
     }}
 />;

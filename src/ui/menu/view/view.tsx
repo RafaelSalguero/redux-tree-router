@@ -1,7 +1,8 @@
 import * as React from "react";
 import { getRenderTree } from "./logic";
-import { SubrouteMap } from "../../../logic";
-import { RouterContainerProps, RouterItemProps } from "./types";
+import { SubrouteMap, findRouteByLocation } from "../../../logic";
+import { RouterContainerProps, RouterItemProps, RouteItemPropsActive } from "./types";
+import { useSelector } from "react-redux";
 
 interface RouteProps {
     location: string;
@@ -12,7 +13,7 @@ interface Props {
     /**Mapa de las rutas a dibujar */
     routes: SubrouteMap;
     /**Componente que va a dibujar los elementos del menu */
-    children: React.ComponentType<RouterItemProps>;
+    children: React.ComponentType<RouteItemPropsActive>;
 };
 
 
@@ -23,6 +24,26 @@ export class RouteMenu extends React.PureComponent<Props> {
         const props = this.props;
         const items = getRenderTree(props.routes, 0);
         const Comp = props.children;
-        return items.map(x => <Comp {...x} />);
+
+        const currentLocation: string = useSelector((state: any) => state.location.type);
+      
+
+        return items.map(x => {
+            const location = x.key;
+            const currentActive = location == currentLocation;
+            
+            const childActive = findRouteByLocation(x.route, currentLocation) != null;
+    
+            const activeStrict = currentActive;
+            const active = activeStrict || childActive;
+
+            return (
+                <Comp
+                    {...x}
+                    activeStrict={activeStrict}
+                    active={active}
+                />
+            );
+        });
     }
 }

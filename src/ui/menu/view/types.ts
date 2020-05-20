@@ -1,4 +1,5 @@
 import { AnyAction } from "redux";
+import { GotoAction, ReadyRoute } from "../../../logic";
 
 /**Props que se le pasan a un compoente que dibuja un conjunto de elementos del menu de ruta */
 export interface RouterContainerProps {
@@ -21,5 +22,12 @@ export interface RouterItemProps extends RouterContainerProps {
     tooltip?: string;
     /**Descripción corta  */
     text?: string;
-    
+    route: ReadyRoute;
+}
+
+export interface RouteItemPropsActive extends RouterItemProps {
+    /**Si la ruta actual es esta o un hijo */
+    active: boolean;
+    /**Si la ruta actual es esta */
+    activeStrict: boolean;
 }

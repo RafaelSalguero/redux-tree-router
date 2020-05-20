@@ -1,10 +1,14 @@
 {
   "name": "react-tree-router",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Arbol de rutas con `react-first-router`",
   "main": "dist/commonjs/index.js",
   "module": "dist/esm/index.js",
   "types": "dist/types/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RafaelSalguero/redux-tree-router"
+  },
   "scripts": {
     "buildCommonJs": "tsc -m commonjs -outDir dist/commonjs -d false",
     "buildES6": "tsc -d -declarationDir dist/types",
