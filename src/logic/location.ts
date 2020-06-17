@@ -12,7 +12,9 @@ export function getLocation(route: ReadyRoute): string {
     return namePathToLocation(getNamePath(route));
 }
 
-/**True si @param location es igual o hijo de @param baseLocation */
+/**True si @param location es hijo de @param baseLocation 
+ * Note que devuelve false si son iguales
+*/
 export function isLocationSubrouteOf(baseLocation:string, location:string) {
     return location.startsWith(baseLocation + "/");
 }

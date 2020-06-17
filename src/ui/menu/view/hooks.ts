@@ -11,13 +11,13 @@ function useCurrentLocation(): string {
  * @param location La ruta que se desea saber si es activa, es el type del action
  * @param strict False para devolver true si esta activa la ruta o sus hijos, true para solo la ruta
  */
-export function uselocationActive(location: string, strict: boolean = false) {
+export function useRoute(location: string, strict: boolean = false) {
     const current = useCurrentLocation();
     if (location == current)
         return true;
 
-    if(strict)
-    return false;
+    if (strict)
+        return false;
 
     return isLocationSubrouteOf(location, current);
 }
