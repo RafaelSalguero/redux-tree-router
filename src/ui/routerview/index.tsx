@@ -3,7 +3,6 @@ import { ReadyRoute, listSubs, findRouteByLocation, isSubroute } from "../../log
 import { firstMap, shallowEquals } from "simple-pure-utils";
 import { toSelector, createSelector } from "async-reselect";
 import { getName, OmitConfSymbol, ParamMap } from "../../logic/types";
-import { ErrorBoundary } from "./error";
 import { connect } from "react-redux";
 
 export interface RouteProps<TParams> {
@@ -85,9 +84,7 @@ class RouteRenderView<T extends ReadyRoute> extends React.Component<ViewProps<T>
         }
 
         return (
-            <ErrorBoundary>
-                <Comp route={this.routeProp.call(this.props)} />
-            </ErrorBoundary>
+            <Comp route={this.routeProp.call(this.props)} />
         );
     }
 }
