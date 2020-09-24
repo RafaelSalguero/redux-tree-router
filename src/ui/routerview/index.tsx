@@ -30,13 +30,8 @@ interface Props<T extends ReadyRoute> {
     root?: React.ComponentType<RouteComponentProps<any>>;
 };
 
-interface ViewProps<T extends ReadyRoute> extends Props<T> {
-    location: string;
-    params: ParamMap;
-};
-
 /**Dibuja un elemento de cierto mapa de rutas, conectandose a la ruta del state.location */
-export function RouterView<T extends ReadyRoute>(props: ViewProps<T>) {
+export function RouterView<T extends ReadyRoute>(props: Props<T>) {
     const key = useRouteKey(props.base);
     const routeProps = useRouteProps();
 
