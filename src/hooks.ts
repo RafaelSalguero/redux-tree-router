@@ -3,10 +3,27 @@ import { isLocationSubrouteOf, getLocation } from "./logic/location";
 import { findRouteByLocation, isSubroute, listSubs, ReadyRoute } from "./logic";
 import { conf, getName, OmitConfSymbol, readyConf } from "./logic/types";
 import { firstMap, last } from "simple-pure-utils";
+import { RouteProps } from "./ui";
+import { useMemo } from "react";
 
 /**Obtiene la ruta actual */
 function useCurrentLocation(): string {
     return useSelector((state: any) => state.location.type);
+}
+
+function useCurrentParams<T>(): T {
+    return useSelector((state: any) => state.location.payload);
+}
+
+/**Obtiene los @see RouteProps de la ruta actual */
+export function useRouteProps<TParams>() : RouteProps<TParams> {
+    const location = useCurrentLocation();
+    const params = useCurrentParams<TParams>();
+    
+    return useMemo(() => ({
+        location: location,
+        params: params
+    }), [location, params]);
 }
 
 /**Dado un mapa de rutas, obtiene la clave de la ruta actual, encaja tambien las subrutas */
