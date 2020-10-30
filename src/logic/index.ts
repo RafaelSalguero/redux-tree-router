@@ -1,2 +1,2 @@
 export * from "./api";
-export { ReadyRoute, SubrouteMap, MappedReadyRoute } from "./types";
+export { ReadyRoute, SubrouteMap, MappedReadyRoute, conf } from "./types";
