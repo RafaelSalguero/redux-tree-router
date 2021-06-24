@@ -157,10 +157,10 @@ function neastRouteNames(routes: SubrouteMap, parent: string | undefined): Subro
 
 
 /**Crea un @see ReadyRoute a partir de una ruta formada por sus subrutas y al configuración de la misma */
-export function createReadyRoute(subroutes: SubrouteMap | undefined, config: RouteConfig): ReadyRoute {
+export function createReadyRoute(subroutes: SubrouteMap | undefined, config: RouteConfig | undefined): ReadyRoute {
     const route: Route = {
         ...subroutes,
-        [conf]: config
+        [conf]: (config ?? {})
     };
     return createReadyRouteFromRoute(route);
 }
