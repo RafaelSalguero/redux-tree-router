@@ -68,17 +68,19 @@ export function goto<TRoute extends ReadyRoute>(route: TRoute, params?: ExtractR
 }
 
 
-
+/**Crea una ruta sin parámetros y sin subrutas */
+export function route()
+    : MappedReadyRoute<{}, RouteConfigParams<{}>, false>
 /**Crea una ruta con parámetros, las rutas con parámetros no pueden tener subrutas */
 export function route
     <TParams extends ParamMapTemplate>
-    (config?: RouteConfigParams<TParams>)
+    (config: RouteConfigParams<TParams>)
     : MappedReadyRoute<{}, RouteConfigParams<TParams>, true>
 
 /**Crea una ruta sin parámetros */
 export function route
     <TSubrouteMap extends SubrouteMap>
-    (config?: RouteConfig, subroutes?: TSubrouteMap)
+    (config: RouteConfig, subroutes?: TSubrouteMap)
     : MappedReadyRoute<TSubrouteMap, RouteConfigParams<undefined>, false>
 
 export function route
