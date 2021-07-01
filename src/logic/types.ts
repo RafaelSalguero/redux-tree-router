@@ -1,7 +1,6 @@
 import { AnyAction } from "redux";
 import { last } from "simple-pure-utils";
 import { GotoRelativeFunc } from "./location";
-import { RxfyScalar } from "react-rxk";
 
 import {  } from "redux-first-router-link";
 
@@ -38,8 +37,6 @@ export interface RouteConfigBase  {
     icon?: JSX.Element;
     /**Ruta o null para autoasignar la ruta */
     path?: string;
-    /**Si la ruta esta visible */
-    visible?: RxfyScalar<boolean>;
 }
 
 /**
@@ -60,7 +57,7 @@ export interface RouteConfigParams< TParams extends (ParamMapTemplate | undefine
     params: TParams;
 
     /**Label de la ruta, puede ser un string o una función que devuelva el label en función de los parámetros*/
-    label?: React.ReactNode | ((params: MappedParamMap<TParams>, goto: GotoRelativeFunc) => RxfyScalar<React.ReactNode | null>);
+    label?: React.ReactNode | ((params: MappedParamMap<TParams>, goto: GotoRelativeFunc) => React.ReactNode);
 }
 
 /**Propiedades extras que lleva la configuración de un @ReadyRoute */

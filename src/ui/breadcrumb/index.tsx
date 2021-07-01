@@ -3,7 +3,6 @@ import * as React from "react";
 import { BreadcrumbItemProps } from "./item";
 import { getConf, getNamePath, ParamMap } from "../../logic/types";
 import { GotoRelativeFunc, gotoRelative } from "../../logic/location";
-import { RxfyScalar, Rx } from "react-rxk";
 import { useSelector } from "react-redux";
 
 interface RouteProps {
@@ -52,20 +51,17 @@ export function Breadcrumbs<T extends RouteItem>(props: ViewProps<T>) {
                     const esHome = x == props.base;
                     const esLeaf = i == (parts.length - 1);
                     const gotoRel: GotoRelativeFunc = (up, relativeNamePath, params) => gotoRelative(currItem, { up, relativeNamePath }, params);
-                    const label: RxfyScalar<React.ReactNode> = typeof (conf.label) == "function" ? conf.label(params as any, gotoRel) : conf.label;
+                    const label: React.ReactNode = typeof (conf.label) == "function" ? conf.label(params as any, gotoRel) : conf.label;
                     const to = {
                             type: name,
                             payload: params
                     }
-                    return <Rx
+                    return <props.render
                         key={to.type}
-                        render={props.render}
-                        props={{
-                            label: label,
-                            home: esHome,
-                            active: esLeaf,
-                            to: to
-                        }}
+                        label={label}
+                        home={esHome}
+                        active={esLeaf}
+                        to={to}
                     />
                 })
             }

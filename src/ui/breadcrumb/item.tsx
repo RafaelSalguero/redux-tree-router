@@ -1,5 +1,4 @@
 import * as React from "react";
-import {  RxfyScalar } from "react-rxk";
 import { AnyAction } from "redux";
 
 export interface BreadcrumbItemProps {
