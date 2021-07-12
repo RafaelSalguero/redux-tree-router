@@ -1,2 +1,3 @@
 export * from "./api";
-export { ReadyRoute, SubrouteMap, MappedReadyRoute, conf } from "./types";
+export { conf } from "./types";
+export type { ReadyRoute, SubrouteMap, MappedReadyRoute, ExtractRouteParams } from "./types";
