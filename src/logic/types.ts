@@ -94,7 +94,7 @@ export type MappedReadyRoute<TRoute extends SubrouteMap, TConfig extends RouteCo
 
 /**Convierte un @see ParamMapTemplate a un @see ParamMap*/
 export type MappedParamMap<TTemplate extends ParamMapTemplate | undefined> =
-    TTemplate extends undefined ? undefined :
+    TTemplate extends undefined ? { } :
     {
         [K in keyof TTemplate]:
         TTemplate[K] extends "string" ? string :

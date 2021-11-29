@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import { isLocationSubrouteOf, getLocation } from "./logic/location";
 import { findRouteByLocation, isSubroute, listSubs, ReadyRoute } from "./logic";
-import { conf, getName, OmitConfSymbol, readyConf } from "./logic/types";
+import { conf, ExtractRouteParams, getName, OmitConfSymbol, readyConf } from "./logic/types";
 import { firstMap, last } from "simple-pure-utils";
 import { RouteProps } from "./ui";
 import { useMemo } from "react";
@@ -15,6 +15,20 @@ function useCurrentParams<T>(): T {
     return useSelector((state: any) => state.location.payload);
 }
 
+/**
+ * Returns the current route parameters or null if the actual route is not @param route.
+ * If the actual route matches but doesn't have parameters returns an empty object 
+ * @param strict True to only match @param route, false to match also subroutes
+ */
+export function useRouteParams<TRoute extends ReadyRoute>(route: TRoute, strict: boolean = false): ExtractRouteParams<TRoute> | null {
+    const inRoute = useInRoute(route, strict);
+    const stateParams = useCurrentParams<ExtractRouteParams<TRoute>>();
+    const params = useMemo(() => stateParams ?? {} , [ stateParams]);
+
+    if(!inRoute) return null;
+    return params;
+}
+
 /**Obtiene los @see RouteProps de la ruta actual */
 export function useRouteProps<TParams>() : RouteProps<TParams> {
     const location = useCurrentLocation();
@@ -26,8 +40,13 @@ export function useRouteProps<TParams>() : RouteProps<TParams> {
     }), [location, params]);
 }
 
-/**Dado un mapa de rutas, obtiene la clave de la ruta actual, encaja tambien las subrutas */
-export function useRouteKey<T extends ReadyRoute>(base: T): (keyof OmitConfSymbol<T>) | null {
+/** Obtiene los keys de una ruta */
+export type RouteKeys<T extends ReadyRoute> = keyof OmitConfSymbol<T>;
+
+/**Dado un mapa de rutas, obtiene la clave de la ruta actual, encaja tambien las subrutas, si la ruta actual
+ * no es hija de la ruta @param base, devuelve null
+ */
+export function useRouteKey<T extends ReadyRoute>(base: T): RouteKeys<T> | null {
     const location = useCurrentLocation();
     const currItem = findRouteByLocation(base, location);
 
