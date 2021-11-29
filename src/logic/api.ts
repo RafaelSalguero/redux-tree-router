@@ -62,6 +62,7 @@ export function isSubroute(base: ReadyRoute, x: ReadyRoute): boolean {
  */
 export function goto<TRoute extends ReadyRoute & ReadyRouteWithParamsExtra<false>>(route: TRoute): GotoAction
 export function goto<TRoute extends ReadyRoute & ReadyRouteWithParamsExtra<true>>(route: TRoute, params: ExtractRouteParams<TRoute>): GotoAction
+export function goto<TRoute extends ReadyRoute>(route: TRoute, params?: ExtractRouteParams<TRoute>): GotoAction
 export function goto<TRoute extends ReadyRoute>(route: TRoute, params?: ExtractRouteParams<TRoute>): GotoAction {
     const namePath = getNamePath(route);
     return gotoActionCreator(namePath, params);
