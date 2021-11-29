@@ -1,6 +1,6 @@
 {
   "name": "react-tree-router",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "description": "Arbol de rutas con `react-first-router`",
   "main": "dist/commonjs/index.js",
   "module": "dist/esm/index.js",
